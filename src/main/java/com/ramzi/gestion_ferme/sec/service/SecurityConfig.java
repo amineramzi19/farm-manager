@@ -3,6 +3,7 @@ package com.ramzi.gestion_ferme.sec.service;
 
 import com.ramzi.gestion_ferme.sec.Entities.AppUser;
 import com.ramzi.gestion_ferme.sec.filters.JwtAuthenticationFilter;
+import com.ramzi.gestion_ferme.sec.filters.JwtAuthorizationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,10 +51,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.headers().frameOptions().disable();
-//        http.authorizeRequests().antMatchers("").permitAll();
-        //http.formLogin();
+       http.authorizeRequests().antMatchers("h2-console/**","/refreshtoken/**","/login/**").permitAll();
+        http.formLogin();
+       // http.authorizeRequests().antMatchers(HttpMethod.POST,"/users/**").hasAuthority("ADMIN");
+     //   http.authorizeRequests().antMatchers(HttpMethod.GET,"/users/**").hasAuthority("USER");
         http.authorizeHttpRequests().anyRequest().authenticated();
         http.addFilter(new JwtAuthenticationFilter(authenticationManagerBean()));
+        http.addFilterBefore(new JwtAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean

@@ -12,7 +12,8 @@ public class Batiment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String CodeBatiment;
+    @Column(name = "Code_Batiment")
+    private String codeBatiment;
     private String Type;
     private Long Capacite;
     private Long QteCourante;

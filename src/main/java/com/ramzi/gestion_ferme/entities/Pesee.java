@@ -24,9 +24,13 @@ public class Pesee {
 
     private Long NoPapier;
     private String CodeBatiment;
-    private Long EchantillonMale;
-    private Long EchantillonFemale;
-    private Double PoidsMale;
-    private Double PoidsFemale;
+    private String EchantillonMale;
+    private String EchantillonFemale;
+    private String HomogeneteMale;
+    private String HomogeneteFemale;
+    private Long PoidsMale;
+    private Long PoidsFemale;
+    private String lot;
+    private String batiment;
     private String Status;
 }

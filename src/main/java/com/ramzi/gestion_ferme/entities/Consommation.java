@@ -26,6 +26,8 @@ public class Consommation {
     private Long QteGaz;
     private Long QteGasoil;
     private Long Paille;
+    private String lot;
+    private String batiment;
     private String Status;
 
 

@@ -22,11 +22,14 @@ public class Situation {
     private Long NoPapier;
     private String CodeBatiment;
     private String CodeAliment;
+    private String lot;
+    private String batiment;
     private Long QteAliment;
     private Long Mortalite;
     private Long Tris;
     private String EffectifMale;
     private String EffectifFemale;
+
     private String Status;
 
 }
