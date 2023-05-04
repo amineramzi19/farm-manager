@@ -35,10 +35,15 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter  {
                     DecodedJWT decodedJWT = jwtVerifier.verify(jwt);
                     String username=decodedJWT.getSubject();
                     String[] roles=decodedJWT.getClaim("roles").asArray(String.class);
-                    String[] batimens=decodedJWT.getClaim("batiments").asArray(String.class);
+                   
+
+
+
+
                     Collection<GrantedAuthority> authorities=new ArrayList<>();
                     for (String r:roles){
                         authorities.add(new SimpleGrantedAuthority(r));
+
                     }
                     UsernamePasswordAuthenticationToken authenticationToken=
                             new UsernamePasswordAuthenticationToken(username,null,authorities);
@@ -54,6 +59,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter  {
             }
             else {
                 filterChain.doFilter(request,response);
+
             }
 
         }

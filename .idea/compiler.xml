@@ -7,8 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Gestion_ferme" />
         <module name="Farm Manager" />
+        <module name="Gestion_ferme" />
+        <module name="gfarm" />
         <module name="gf" />
       </profile>
     </annotationProcessing>
@@ -18,6 +19,7 @@
       <module name="Farm Manager" options="-parameters" />
       <module name="Gestion_ferme" options="-parameters" />
       <module name="gf" options="-parameters" />
+      <module name="gfarm" options="-parameters" />
     </option>
   </component>
 </project>

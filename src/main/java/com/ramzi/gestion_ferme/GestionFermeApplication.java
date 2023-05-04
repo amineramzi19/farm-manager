@@ -4,11 +4,9 @@ import com.ramzi.gestion_ferme.entities.*;
 import com.ramzi.gestion_ferme.sec.Entities.AppRole;
 import com.ramzi.gestion_ferme.sec.Entities.AppUser;
 import com.ramzi.gestion_ferme.sec.service.AccountService;
-import com.ramzi.gestion_ferme.services.AlimentService;
-import com.ramzi.gestion_ferme.services.BatimentService;
-import com.ramzi.gestion_ferme.services.ConsommationService;
-import com.ramzi.gestion_ferme.services.Implementation.SituationServiceImpl;
-import com.ramzi.gestion_ferme.services.PeseeService;
+import com.ramzi.gestion_ferme.services.*;
+import com.ramzi.gestion_ferme.services.Implementation.LotService;
+import com.ramzi.gestion_ferme.services.Implementation.SoucheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -41,7 +39,11 @@ public class GestionFermeApplication implements CommandLineRunner {
     @Autowired
     private PeseeService peseeService;
     @Autowired
-    private SituationServiceImpl situationService;
+      SoucheService soucheService;
+    @Autowired
+     LotService lotService;
+    @Autowired
+    private SituationService situationService;
     @Autowired
       AccountService accountService;
 
@@ -70,13 +72,13 @@ public class GestionFermeApplication implements CommandLineRunner {
            accountService.addNewRole(new AppRole(null,"PRODUCT_MANAGER"));
            accountService.addNewRole(new AppRole(null,"BILLS_MANAGER"));
 
-            accountService.addNewUser(new AppUser(null,"ZalarHolding","1234",new ArrayList<>()));
+            accountService.addNewUser(new AppUser(null,"zakaria10@gmail.com","1234",new ArrayList<>()));
             accountService.addNewUser(new AppUser(null,"admin","1234",new ArrayList<>()));
             accountService.addNewUser(new AppUser(null,"user2","1234",new ArrayList<>()));
             accountService.addNewUser(new AppUser(null,"user3","1234",new ArrayList<>()));
             accountService.addNewUser(new AppUser(null,"user4","1234",new ArrayList<>()));
 
-            accountService.addRoleToUser("ZalarHolding","USER");
+            accountService.addRoleToUser("zakaria10@gmail.com","USER");
             accountService.addRoleToUser("admin","USER");
             accountService.addRoleToUser("admin","ADMIN");
             accountService.addRoleToUser("user2","USER");
@@ -97,14 +99,12 @@ public class GestionFermeApplication implements CommandLineRunner {
             aliment.setDescription("Description CC"+i);
             alimentService.CreateUpdateAliment(aliment);
 
-//
-//            Batiment batiment = new Batiment();
-//            batiment.setCode_Batiment("CC" +i);
-//            batiment.setType("type CC" +i);
-//            batiment.setCapacite(5l);
-//            batiment.setQteCourante(5l);
-//            batimentService.CreateUpdateBatiment(batiment);
-
+            Batiment batiment = new Batiment();
+            batiment.setCodeBatiment("CC" +i);
+            batiment.setType("type CC" +i);
+            batiment.setCapacite(5l);
+            batiment.setQteCourante(5l);
+            batimentService.CreateUpdateBatiment(batiment);
 
             Consommation consommation = new Consommation();
             consommation.setDateCourante( new Date());
@@ -115,9 +115,7 @@ public class GestionFermeApplication implements CommandLineRunner {
             consommation.setBatiment("Batimen 12");
             consommation.setLot("xx");
             consommation.setStatus("Transmis" );
-
             consommationService.CreateUpdateConsommation(consommation);
-
 
             Pesee pesee = new  Pesee();
             pesee.setDatePesee( new Date());
@@ -131,9 +129,7 @@ public class GestionFermeApplication implements CommandLineRunner {
             pesee.setHomogeneteMale("M");
             pesee.setBatiment("Batiment 12");
             pesee.setLot("xx");
-
             pesee.setStatus( "Non Transmis" );
-
             peseeService.CreateUpdatePesee(pesee);
 
             Situation situation = new Situation();
@@ -149,9 +145,21 @@ public class GestionFermeApplication implements CommandLineRunner {
             situation.setEffectifMale("AZ45ER25");
             situation.setEffectifFemale("3E5TRF15");
             situation.setStatus( "NoN Transmis" );
-
-
             situationService.CreateUpdateSituation(situation);
+
+            Lot lot = new Lot();
+            lot.setCode("1234");
+            lot.setDateDb(new Date());
+            lot.setDescription("zalar");
+            lot.setIdBatiment(123l);
+            lotService.CreateUpdateLot(lot);
+
+            Souche souche = new Souche();
+            souche.setCode(12l);
+            souche.setDiscription("xxx");
+            soucheService.CreateUpdateSouche(souche);
+
+
         }
     }
 }

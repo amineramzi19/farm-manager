@@ -30,7 +30,10 @@ public class AccountRestController {
     public AccountRestController( AccountService accountService) {
         this.accountService = accountService;
     }
-
+//    @GetMapping("/profile")
+//    public AppUser profile(Principal principal){
+//        return accountService.loadUserByUserName(principal.getName());
+//    }
     @GetMapping(path = "/users")
     @PostAuthorize("hasAuthority('USER')")
     public List<AppUser>appUsers(){
@@ -75,7 +78,11 @@ public class AccountRestController {
                         .sign(algorithm);
                 Map<String,String> idToken=new HashMap<>();
                 idToken.put("access-token",jwtAccessToken);
-                idToken.put("refresh-token",jwt);
+                idToken.put("refresh_Tokn",jwt);
+//                idToken.put("nom","");
+//                idToken.put("filiale","");
+//                idToken.put("batiment","");
+//                idToken.put("lot","");
                 response.setContentType("application/json");
                 new ObjectMapper().writeValue(response.getOutputStream(),idToken);
 

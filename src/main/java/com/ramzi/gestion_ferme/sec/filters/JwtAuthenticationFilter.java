@@ -32,6 +32,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         System.out.println("attemptAuthentication");
         String username=request.getParameter("username");
         String password=request.getParameter("password");
+       // String batiment=request.getParameter("batiment");
+       // String age=request.getParameter("age");
+
+        //System.out.println(age);
+
+       // System.out.println(batiment);
         System.out.println(username);
         System.out.println(password);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=
@@ -49,8 +55,14 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                         .withExpiresAt(new Date(System.currentTimeMillis()+5*60*1000))
                                 .withIssuer(request.getRequestURI().toString())
                                         .withClaim("roles",user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
-                .withClaim("batimens",user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
-                                                .sign(algo1);
+//                .withClaim("batimens",user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
+//                .withClaim("nam",user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
+//                .withClaim("filiale",user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
+//                .withClaim("lot",user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
+//                .withClaim("age",user.getAuthorities().stream().map(ga->ga.getAuthority()).collect(Collectors.toList()))
+
+
+                .sign(algo1);
 
 
         String jwtRefreshTokenToken= JWT.create()

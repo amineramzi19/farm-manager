@@ -12,7 +12,7 @@ public class Batiment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "Code_Batiment")
+    //@Column(name = "Code_Batiment")
     private String codeBatiment;
     private String Type;
     private Long Capacite;
